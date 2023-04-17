@@ -11,7 +11,7 @@ const KEYCODE_ESC = 27;
 export default function App() {
   const [articles, setArticles] = useState([]);
   const [searchName, setSearchName] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [modalItem, setModalItem] = useState(null);
 
@@ -25,7 +25,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (page !== 0) {
+    if (page !== 1) {
       setIsLoading(true)
       fetch(`https://pixabay.com/api/?q=${searchName}&page=${page}&key=33018629-fbe0e3699e0e90be35e2ad394&image_type=photo&orientation=horizontal&per_page=12`)
         .then(res => res.json())
@@ -58,14 +58,14 @@ export default function App() {
   };
 
   const findImg = (event) => {
-    let count = page;
-    setPage(count +=1);
-    setIsLoading(true)
     event.preventDefault();
+    setIsLoading(true)
     fetch(`https://pixabay.com/api/?q=${searchName}&page=1&key=33018629-fbe0e3699e0e90be35e2ad394&image_type=photo&orientation=horizontal&per_page=12`)
       .then(res => res.json())
-      .then(res => setArticles(res.hits),
-        setIsLoading(false))
+      .then(res => {
+        setArticles(res.hits);
+        setIsLoading(false)
+      })
   }
         
 
