@@ -24,7 +24,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (page != 0) {
+    if (page !== 0) {
       setIsLoading(true)
       fetch(`https://pixabay.com/api/?q=${searchName}&page=${page}&key=33018629-fbe0e3699e0e90be35e2ad394&image_type=photo&orientation=horizontal&per_page=12`)
         .then(res => res.json())
