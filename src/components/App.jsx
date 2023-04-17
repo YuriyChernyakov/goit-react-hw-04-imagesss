@@ -21,6 +21,7 @@ export default function App() {
     return () => {
       document.removeEventListener('keydown', keyDownEventsHandle);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function App() {
           setIsLoading(false)
         })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   const keyDownEventsHandle = (e) => {
